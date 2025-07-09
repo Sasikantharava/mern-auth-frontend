@@ -9,10 +9,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/login`,
-        form
-      );
+      const res = await axios.post("https://mern-auth-backend-8hou.onrender.com/api/auth/register", form);
       localStorage.setItem("token", res.data.token);
       alert("Login successful");
     } catch (error) {
@@ -38,9 +35,9 @@ export default function Login() {
         />
         <button type="submit">Login</button>
       </form>
-          <p style={{ marginTop: "15px" }}>
-      Don't have an account? <Link to="/register">Register here</Link>
-    </p>
+      <p style={{ marginTop: "15px" }}>
+        Don't have an account? <Link to="/register">Register here</Link>
+      </p>
 
     </div>
   );

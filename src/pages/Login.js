@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./AuthForm.css"; // Make sure this file exists
+import "./AuthForm.css";
 import { Link } from "react-router-dom";
 
 export default function Login() {
@@ -9,10 +9,11 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://mern-auth-backend-8hou.onrender.com/api/auth/register", form);
+      const res = await axios.post("https://mern-auth-backend-8hou.onrender.com/api/auth/login", form);
       localStorage.setItem("token", res.data.token);
       alert("Login successful");
     } catch (error) {
+      console.error("Login error:", error.response?.data || error.message);
       alert("Login failed");
     }
   };
@@ -38,7 +39,6 @@ export default function Login() {
       <p style={{ marginTop: "15px" }}>
         Don't have an account? <Link to="/register">Register here</Link>
       </p>
-
     </div>
   );
 }
